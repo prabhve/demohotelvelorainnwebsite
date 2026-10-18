@@ -912,7 +912,7 @@
   </section>
 
   <!-- ================= 6. ROOMS & SUITES (7-STAR PRESENTATION) ================= -->
-  <section id="rooms" data-header-theme="light" class="py-16 sm:py-24 bg-brand-sand/40 border-t border-brand-gold/20">
+  <section id="rooms" data-header-theme="light" class="scroll-mt-16 sm:scroll-mt-20 py-16 sm:py-24 bg-brand-sand/40 border-t border-brand-gold/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-14 reveal-init">
@@ -2066,14 +2066,30 @@
     </div>
   </footer>
 
-  <!-- ================= 14. FIXED MOBILE BOTTOM ACTION BAR ================= -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-navyDeep/95 backdrop-blur-2xl border-t border-brand-gold/35 px-3 py-2.5 flex items-center gap-2.5 shadow-2xl mobile-safe-bottom">
-    <a href="tel:+919670215052" class="flex-1 py-3 bg-slate-800/90 active:bg-slate-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 border border-brand-gold/30 transition-all shadow-md active:scale-95">
-      <span class="text-brand-gold">📞</span> <span>Call Reception</span>
+  <!-- ================= 14. FIXED MOBILE BOTTOM ACTION BAR WITH ROOMS OPTION ================= -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-navyDeep/95 backdrop-blur-2xl border-t border-brand-gold/35 px-2.5 py-2 flex items-center gap-2 shadow-2xl mobile-safe-bottom">
+    
+    <!-- 1. Room Option -->
+    <a href="#rooms" class="flex-1 py-2 px-1 bg-brand-navy border border-brand-gold/50 active:bg-brand-navyLight text-white font-bold rounded-xl flex flex-col items-center justify-center gap-0.5 shadow-md active:scale-95 transition-all text-center">
+      <span class="text-base leading-none">🛏️</span>
+      <span class="text-brand-goldLight text-[10px] font-bold tracking-tight whitespace-nowrap">View Rooms</span>
     </a>
-    <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20am%20looking%20for%20room%20availability%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer flex-1 py-3 bg-emerald-600 active:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-xl glow-emerald transition-all active:scale-95">
-      <span>💬</span> <span>WhatsApp (Save 20%)</span>
+
+    <!-- 2. Call Reception Option -->
+    <a href="tel:+919670215052" class="flex-1 py-2 px-1 bg-slate-800/90 border border-slate-700 active:bg-slate-700 text-white font-bold rounded-xl flex flex-col items-center justify-center gap-0.5 shadow-md active:scale-95 transition-all text-center">
+      <span class="text-base leading-none">📞</span>
+      <span class="text-slate-200 text-[10px] font-bold tracking-tight whitespace-nowrap">Call Desk</span>
     </a>
+
+    <!-- 3. WhatsApp Direct Booking Option (Primary Shimmer CTA) -->
+    <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20am%20looking%20for%20room%20availability%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer flex-[1.4] py-2 px-3 bg-emerald-600 active:bg-emerald-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-xl glow-emerald transition-all active:scale-95 text-center">
+      <span class="text-lg leading-none">💬</span>
+      <div class="text-left leading-tight">
+        <span class="block text-[11px] font-bold whitespace-nowrap">WhatsApp Book</span>
+        <span class="block text-[9px] text-emerald-200 font-extrabold uppercase whitespace-nowrap">Save 20% Direct</span>
+      </div>
+    </a>
+
   </div>
 
   <!-- ================= 15. ROOM GALLERY MODAL (SMOOTH SCALE IN) ================= -->
