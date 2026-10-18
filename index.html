@@ -318,6 +318,43 @@
       color: #FFFFFF !important;
       text-decoration: none !important;
     }
+    /* Leaflet Zoom Control High Contrast Luxury Theme */
+    .leaflet-control-zoom {
+      border: 1.5px solid rgba(197, 160, 89, 0.6) !important;
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) !important;
+    }
+    .leaflet-control-zoom a {
+      background-color: #060D17 !important;
+      color: #F0E2C2 !important;
+      font-weight: 900 !important;
+      font-size: 16px !important;
+      line-height: 28px !important;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.3) !important;
+      transition: all 0.2s ease !important;
+    }
+    .leaflet-control-zoom a:hover {
+      background-color: #C5A059 !important;
+      color: #060D17 !important;
+    }
+    .leaflet-control-zoom a:last-child {
+      border-bottom: none !important;
+    }
+    .leaflet-control-attribution {
+      background: rgba(6, 13, 23, 0.8) !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+      font-size: 9px !important;
+      padding: 1px 6px !important;
+      border-radius: 4px !important;
+    }
+    .leaflet-control-attribution a {
+      color: #C5A059 !important;
+      text-decoration: none !important;
+    }
+    #locationDetailMap .leaflet-control-attribution {
+      margin-bottom: 44px !important;
+    }
     .leaflet-popup-content, .leaflet-popup-content-wrapper {
       color: #FFFFFF !important;
     }
@@ -347,7 +384,7 @@
       color: #FFFFFF !important;
       border-color: #C5A059 !important;
     }
-    .custom-hotel-pin, .custom-place-pin, .route-mid-pill {
+    .custom-hotel-pin, .custom-place-pin, .custom-station-pin, .route-mid-pill {
       background: transparent;
       border: none;
     }
@@ -2110,19 +2147,19 @@
             <!-- Map Container -->
             <div id="locationDetailMap" class="w-full h-[260px] sm:h-[290px] relative z-0"></div>
 
-            <!-- Floating Quick GPS Action Bar -->
-            <div class="absolute bottom-3 left-3 right-3 z-10 flex flex-wrap items-center justify-between gap-2 bg-brand-navyDeep/92 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-brand-gold/40 shadow-2xl text-xs">
-              <div class="flex items-center gap-2 text-white">
+            <!-- Floating Quick GPS Action Bar (High Contrast Solid Obsidian Gold) -->
+            <div class="absolute bottom-3 left-3 right-3 z-10 flex flex-wrap items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-2xl shadow-2xl text-xs" style="background-color: #060D17 !important; border: 1.5px solid rgba(197, 160, 89, 0.75) !important;">
+              <div class="flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-brand-gold animate-ping shrink-0"></span>
-                <span class="font-bold text-[11px] sm:text-xs text-brand-goldLight">Hotel Velora Inn</span>
-                <span class="text-slate-400 text-[10px] hidden sm:inline">• 800m to Cantt Station</span>
+                <span class="font-extrabold text-xs sm:text-sm tracking-wide" style="color: #FFFFFF !important;">Hotel Velora Inn</span>
+                <span class="text-xs font-bold" style="color: #F0E2C2 !important;">• 800m to Station</span>
               </div>
               <div class="flex items-center gap-2">
-                <button type="button" onclick="resetLocationMapCenter()" class="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-bold border border-white/20 transition-all cursor-pointer">
-                  🎯 Recenter
+                <button type="button" onclick="resetLocationMapCenter()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 active:scale-95" style="background-color: rgba(255, 255, 255, 0.14) !important; color: #FFFFFF !important; border: 1px solid rgba(255, 255, 255, 0.3) !important;">
+                  <span>🎯</span> <span style="color: #FFFFFF !important;">Recenter</span>
                 </button>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Hotel+Velora+Inn+Pared+Kothi+Vijay+Nagar+Colony+Varanasi&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn-shimmer px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-[10px] font-bold shadow-md flex items-center gap-1 transition-all glow-emerald">
-                  <span>🧭 Turn-by-Turn GPS →</span>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Hotel+Velora+Inn+Pared+Kothi+Vijay+Nagar+Colony+Varanasi&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn-shimmer px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 transition-all glow-emerald active:scale-95" style="background-color: #059669 !important; color: #FFFFFF !important; text-decoration: none !important;">
+                  <span>🧭</span> <span style="color: #FFFFFF !important; font-weight: 700;">Turn-by-Turn GPS →</span>
                 </a>
               </div>
             </div>
@@ -3843,39 +3880,57 @@
 
       const hotelPin = L.divIcon({
         className: 'custom-hotel-pin',
-        html: `<div class="relative flex items-center justify-center cursor-pointer">
+        html: `<div class="relative flex items-center justify-center cursor-pointer group" onclick="resetLocationMapCenter()" title="Hotel Velora Inn">
                 <div class="w-10 h-10 rounded-full bg-[#C5A059] text-[#0C1829] font-serif font-black text-base flex items-center justify-center border-2 border-white shadow-2xl">
                   V
                 </div>
                 <div class="absolute -inset-2 rounded-full border-2 border-[#C5A059] animate-ping opacity-75 pointer-events-none"></div>
-                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#0C1829] text-[#C5A059] text-[10px] font-bold px-2 py-0.5 rounded-full shadow whitespace-nowrap border border-[#C5A059]/50">
-                  Hotel Velora Inn
+                <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 bg-[#060D17]/95 text-white text-[10.5px] font-bold px-2.5 py-0.5 rounded-full shadow-2xl whitespace-nowrap border border-[#C5A059] flex items-center gap-1 z-20 ring-1 ring-white/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span style="color: #FFFFFF !important;">Hotel Velora Inn</span>
                 </div>
                </div>`,
         iconSize: [40, 40],
-        iconAnchor: [20, 20],
-        popupAnchor: [0, -22]
+        iconAnchor: [20, 20]
       });
 
-      const hMarker = L.marker([25.3308, 82.9835], { icon: hotelPin }).addTo(locationDetailMap);
-      hMarker.bindPopup('<div class="p-2.5 text-xs text-white max-w-[200px]"><strong class="font-serif font-bold text-sm text-[#E8D5A7] block">Hotel Velora Inn</strong><span class="text-[11px] text-slate-300 block mb-1">Pared Kothi, Cantt, Varanasi</span><span class="text-[10px] bg-emerald-900/60 text-emerald-300 px-2 py-0.5 rounded font-bold">800m to Cantt Station</span></div>');
+      const hMarker = L.marker([25.3308, 82.9835], { icon: hotelPin, zIndexOffset: 800 }).addTo(locationDetailMap);
+      hMarker.on('click', resetLocationMapCenter);
 
       const canttPin = L.divIcon({
         className: 'custom-station-pin',
-        html: '<div class="w-7 h-7 rounded-full bg-[#0C1829] text-white text-xs flex items-center justify-center border border-[#C5A059] shadow-lg">🚆</div>',
-        iconSize: [28, 28],
-        iconAnchor: [14, 14],
-        popupAnchor: [0, -15]
+        html: `<div class="relative flex items-center justify-center cursor-pointer">
+                <div class="w-8 h-8 rounded-full bg-[#060D17] text-white text-sm flex items-center justify-center border-2 border-[#C5A059] shadow-xl">
+                  🚆
+                </div>
+                <div class="absolute -bottom-7 left-1/2 -translate-x-1/2 bg-[#060D17]/95 text-[#F0E2C2] text-[10.5px] font-bold px-2.5 py-0.5 rounded-full shadow-2xl whitespace-nowrap border border-[#C5A059] flex items-center gap-1 z-20 ring-1 ring-white/20">
+                  <span style="color: #F0E2C2 !important;">Cantt Station (800m)</span>
+                </div>
+               </div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
       });
 
-      const sMarker = L.marker([25.3283, 82.9866], { icon: canttPin }).addTo(locationDetailMap);
-      sMarker.bindPopup('<div class="p-2 text-xs text-white"><strong class="font-bold text-[#E8D5A7] block">Varanasi Cantt Station</strong><span class="text-[11px] text-slate-300">800m away (3 Mins)</span></div>');
+      const sMarker = L.marker([25.3283, 82.9866], { icon: canttPin, zIndexOffset: 700 }).addTo(locationDetailMap);
 
+      // Glowing ambient line
       L.polyline([[25.3283, 82.9866], [25.3308, 82.9835]], {
         color: '#C5A059',
-        weight: 4,
-        dashArray: '6, 8',
-        opacity: 0.9
+        weight: 8,
+        opacity: 0.38,
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(locationDetailMap);
+
+      // Core animated dashed line
+      L.polyline([[25.3283, 82.9866], [25.3308, 82.9835]], {
+        color: '#FFF3CD',
+        weight: 3.5,
+        dashArray: '7, 9',
+        opacity: 1.0,
+        className: 'leaflet-route-animated',
+        lineCap: 'round',
+        lineJoin: 'round'
       }).addTo(locationDetailMap);
 
       setTimeout(() => {
