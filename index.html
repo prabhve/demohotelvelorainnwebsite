@@ -354,6 +354,15 @@
       color: #C5A059 !important;
       text-decoration: none !important;
     }
+    @media (max-width: 640px) {
+      .leaflet-control-attribution {
+        display: none !important;
+      }
+      .leaflet-bottom.leaflet-left {
+        bottom: 12px !important;
+        left: 12px !important;
+      }
+    }
     #locationDetailMap .leaflet-control-attribution {
       margin-bottom: 44px !important;
     }
@@ -1492,33 +1501,35 @@
 
         <!-- Right Column: Interactive Leaflet Map Canvas with Real-Time Routing -->
         <div class="lg:col-span-7 space-y-3">
-          <div class="relative rounded-3xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-slate-900 h-[340px] sm:h-[450px] lg:h-[620px] w-full gold-border-glow">
+          <div class="relative rounded-3xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-slate-900 h-[420px] sm:h-[480px] lg:h-[620px] w-full gold-border-glow">
             <div id="varanasiMap" class="w-full h-full z-10"></div>
             
-            <!-- Map Floating Controls & Origin Badge -->
-            <div class="absolute top-4 left-4 z-20 flex flex-col gap-2">
-              <div class="bg-brand-navyDeep/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-brand-gold/50 text-xs font-semibold text-white shadow-xl flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold animate-ping"></span>
-                <span>Origin: <strong>Hotel Velora Inn</strong> (Cantt)</span>
+            <!-- Coordinated Top Header Bar (Zero-Collision Responsive Bar) -->
+            <div class="absolute top-3 left-3 right-3 z-20 flex items-center justify-between gap-2 pointer-events-none">
+              <!-- Origin Indicator -->
+              <div class="pointer-events-auto bg-brand-navyDeep/95 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-2xl border border-brand-gold/50 text-[11px] sm:text-xs font-semibold text-white shadow-xl flex items-center gap-1.5 shrink min-w-0">
+                <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping shrink-0"></span>
+                <span class="truncate"><span class="hidden sm:inline">Origin: </span><strong>Hotel Velora Inn</strong></span>
+              </div>
+
+              <!-- Map View Layer Switcher (Streets vs Satellite) -->
+              <div class="pointer-events-auto flex items-center gap-1 bg-brand-navyDeep/95 backdrop-blur-md p-1 rounded-xl sm:rounded-2xl border border-brand-gold/40 shadow-xl shrink-0">
+                <button id="btnLayerStreet" onclick="switchMapLayer('street')" class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-bold rounded-lg sm:rounded-xl transition-all bg-brand-gold text-brand-navy shadow-sm cursor-pointer whitespace-nowrap">
+                  🗺️ Streets
+                </button>
+                <button id="btnLayerSatellite" onclick="switchMapLayer('satellite')" class="px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-bold rounded-lg sm:rounded-xl transition-all text-slate-300 hover:text-white cursor-pointer whitespace-nowrap">
+                  🛰️ Satellite
+                </button>
               </div>
             </div>
 
-            <!-- Map View Layer Switcher (Streets vs Satellite) -->
-            <div class="absolute top-4 right-4 z-20 flex gap-1 bg-brand-navyDeep/95 backdrop-blur-md p-1.5 rounded-2xl border border-brand-gold/40 shadow-xl">
-              <button id="btnLayerStreet" onclick="switchMapLayer('street')" class="px-3.5 py-1.5 text-[11px] font-bold rounded-xl transition-all bg-brand-gold text-brand-navy shadow-sm cursor-pointer">
-                🗺️ Streets
+            <!-- Sleek Bottom-Right Quick Action Bar -->
+            <div class="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 pointer-events-auto">
+              <button type="button" onclick="resetMapCenter()" class="bg-brand-navyDeep/95 hover:bg-brand-navy backdrop-blur-md px-3 py-1.5 rounded-xl border border-brand-gold/40 text-[11px] font-bold text-brand-goldLight shadow-xl flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer">
+                <span>🎯</span> <span class="whitespace-nowrap">Hotel</span>
               </button>
-              <button id="btnLayerSatellite" onclick="switchMapLayer('satellite')" class="px-3.5 py-1.5 text-[11px] font-bold rounded-xl transition-all text-slate-300 hover:text-white cursor-pointer">
-                🛰️ Satellite
-              </button>
-            </div>
-
-            <div class="absolute bottom-4 right-4 z-20 flex gap-2">
-              <button onclick="resetMapCenter()" class="bg-brand-navyDeep/90 hover:bg-brand-navy backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/20 text-xs font-bold text-brand-goldLight shadow-lg flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer">
-                <span>🎯 Center Hotel</span>
-              </button>
-              <button onclick="openFullGoogleMap()" class="bg-emerald-600/90 hover:bg-emerald-600 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-bold text-white shadow-lg flex items-center gap-1.5 transition-all hover:scale-105 cursor-pointer glow-emerald">
-                <span>🗺️ Full Route</span>
+              <button type="button" onclick="openFullGoogleMap()" class="bg-emerald-600/95 hover:bg-emerald-600 backdrop-blur-md px-3 py-1.5 rounded-xl text-[11px] font-bold text-white shadow-xl flex items-center gap-1.5 transition-all hover:scale-105 active:scale-95 cursor-pointer glow-emerald">
+                <span>🧭</span> <span class="whitespace-nowrap">Live GPS</span>
               </button>
             </div>
           </div>
@@ -2147,7 +2158,7 @@
           <div class="rounded-3xl overflow-hidden border-2 border-brand-gold/40 shadow-xl bg-slate-900 relative gold-border-glow">
             
             <!-- Map Container -->
-            <div id="locationDetailMap" class="w-full h-[260px] sm:h-[290px] relative z-0"></div>
+            <div id="locationDetailMap" class="w-full h-[300px] sm:h-[340px] relative z-0"></div>
 
             <!-- Floating Quick GPS Action Bar (High Contrast Solid Obsidian Gold) -->
             <div class="absolute bottom-3 left-3 right-3 z-10 flex flex-wrap items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-2xl shadow-2xl text-xs" style="background-color: #060D17 !important; border: 1.5px solid rgba(197, 160, 89, 0.75) !important;">
@@ -3508,8 +3519,11 @@
         center: [25.3200, 83.0000],
         zoom: 13,
         scrollWheelZoom: false,
-        zoomControl: true
+        zoomControl: false
       });
+
+      // Place zoom controls cleanly at bottom-left away from top header
+      L.control.zoom({ position: 'bottomleft' }).addTo(varanasiMap);
 
       // Esri World Street Map (Crisp, High-Detail, Zero Watermark, 100% Free)
       streetTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -3739,35 +3753,25 @@
         lineJoin: 'round'
       }).addTo(varanasiMap);
 
-      // 3. Draw Floating Midpoint Distance & Time Pill along the route
-      const midLat = (hotelCoords[0] + place.coords[0]) / 2;
-      const midLng = (hotelCoords[1] + place.coords[1]) / 2;
-      const midPillIcon = L.divIcon({
-        className: 'route-mid-pill',
-        html: `<div class="px-3 py-1 rounded-full bg-[#060D17]/95 text-[#E8D5A7] border border-[#C5A059] text-[10.5px] font-bold shadow-2xl backdrop-blur-md flex items-center gap-1.5 whitespace-nowrap transform -translate-x-1/2 -translate-y-1/2 pointer-events-none ring-1 ring-white/20">
-                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                 <span>${place.distance} • ${place.time}</span>
-               </div>`,
-        iconSize: [0, 0]
-      });
-      activeRouteMidMarker = L.marker([midLat, midLng], {
-        icon: midPillIcon,
-        interactive: false,
-        zIndexOffset: 600
-      }).addTo(varanasiMap);
-
-      // 4. Smoothly fit bounds to show both Hotel Velora Inn and the Destination clearly
+      // 3. Smoothly fit bounds to show both Hotel Velora Inn and Destination with safe padding
       const bounds = L.latLngBounds([hotelCoords, place.coords]);
+      const isMobile = window.innerWidth < 640;
+      const padTop = isMobile ? 55 : 65;
+      const padBottom = isMobile ? 50 : 65;
+      const padSide = isMobile ? 30 : 60;
+      const boundsOptions = {
+        paddingTopLeft: [padSide, padTop],
+        paddingBottomRight: [padSide, padBottom],
+        maxZoom: 15
+      };
       if (shouldScroll) {
         varanasiMap.flyToBounds(bounds, {
-          padding: [60, 60],
-          maxZoom: 15,
+          ...boundsOptions,
           duration: 1.1
         });
       } else {
         varanasiMap.fitBounds(bounds, {
-          padding: [60, 60],
-          maxZoom: 15,
+          ...boundsOptions,
           animate: false
         });
       }
@@ -3872,8 +3876,10 @@
         center: [25.3308, 82.9835],
         zoom: 15,
         scrollWheelZoom: false,
-        zoomControl: true
+        zoomControl: false
       });
+
+      L.control.zoom({ position: 'topright' }).addTo(locationDetailMap);
 
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
         attribution: '&copy; Esri, HERE, Garmin',
