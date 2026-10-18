@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Hotel Velora Inn Varanasi | 7-Star Boutique Luxury Near Cantt Railway Station</title>
   <meta name="description" content="Immerse in refined 7-star boutique luxury at Hotel Velora Inn, Pared Kothi, Cantt, Varanasi. 800m from Cantt Station & minutes from Kashi Vishwanath Dham. Direct WhatsApp booking with best rate guarantee.">
   <meta name="keywords" content="Hotel Velora Inn Varanasi, Luxury Hotel Cantt Varanasi, Boutique hotel Varanasi, Hotels near Varanasi Junction, Kashi Vishwanath hotel booking, Pared Kothi luxury stay, Best hotel in Varanasi">
@@ -405,6 +405,49 @@
       border-color: #0C1829 !important;
       color: #0C1829 !important;
     }
+
+    /* ================= ULTRA-PERFECT MOBILE RESPONSIVENESS SYSTEM ================= */
+    
+    /* 1. Prevent iOS Safari auto-zoom on input focus */
+    @media (max-width: 640px) {
+      input, select, textarea {
+        font-size: 16px !important; /* Critical: Stops iOS Safari from zooming in on inputs */
+      }
+      .star-btn {
+        touch-action: manipulation;
+        padding: 4px;
+      }
+    }
+
+    /* 2. Hide scrollbars on horizontal swipeable pill strips while retaining native touch momentum */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 3. Smooth momentum touch scroll */
+    .touch-scroll {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* 4. Safe Area Inset Support for Modern Notched/Bezel-less Phones (iPhone Dynamic Island & Home Bar) */
+    .mobile-safe-bottom {
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
+    }
+
+    /* 5. Touch tap highlight styling for buttery native feel */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* 6. Active tap micro-feedback */
+    button:active, a:active {
+      transform: scale(0.985);
+    }
   </style>
 
   <!-- Schema.org Hotel JSON-LD -->
@@ -431,39 +474,39 @@
   }
   </script>
 </head>
-<body class="bg-brand-canvas text-slate-800 font-sans antialiased selection:bg-brand-gold selection:text-white pb-24 md:pb-0">
+<body class="bg-brand-canvas text-slate-800 font-sans antialiased selection:bg-brand-gold selection:text-white pb-28 sm:pb-24 lg:pb-0">
 
   <!-- ================= 1. ROYAL TOP UTILITY STRIP ================= -->
-  <div class="bg-brand-navyDeep text-slate-300 text-xs py-2 px-4 sm:px-8 border-b border-brand-gold/25 relative z-30">
+  <div class="bg-brand-navyDeep text-slate-300 text-xs py-2 px-3 sm:px-8 border-b border-brand-gold/25 relative z-30">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 text-center sm:text-left">
-      <div class="flex items-center gap-2 text-[11px] sm:text-xs whitespace-nowrap">
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 text-[10.5px] sm:text-xs">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
         <span class="text-brand-goldLight font-bold tracking-wide">Direct Privilege:</span>
-        <span class="text-slate-200">Save 20% vs OTA Apps • Zero Hidden Convenience Charges</span>
+        <span class="text-slate-200">Save 20% Direct • No OTA Hidden Charges</span>
       </div>
-      <div class="flex items-center gap-3 text-[11px] sm:text-xs whitespace-nowrap">
+      <div class="flex items-center justify-center gap-2.5 text-[10.5px] sm:text-xs">
         <a href="tel:+919670215052" class="hover:text-brand-goldLight transition-colors flex items-center gap-1 font-medium">
           <span class="text-brand-gold">📞 Desk:</span>
           <strong class="text-white font-mono">+91 9670215052</strong>
         </a>
         <span class="text-slate-600 hidden sm:inline">|</span>
-        <span class="text-brand-gold hidden sm:inline">📍 Pared Kothi, Cantt</span>
+        <span class="text-brand-goldLight hidden sm:inline">📍 Pared Kothi, Cantt (800m Station)</span>
       </div>
     </div>
   </div>
 
   <!-- ================= 2. STICKY DYNAMIC ADAPTIVE NAVBAR ================= -->
   <header id="mainHeader" class="header-theme-dark">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-3.5 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3">
       
       <!-- Brand Logo -->
-      <a href="#home" class="flex items-center gap-3 shrink-0 group">
-        <div class="header-logo-badge w-10 h-10 rounded-full flex items-center justify-center font-serif text-xl font-bold shadow-sm group-hover:scale-105 transition-all duration-300 shrink-0">
+      <a href="#home" class="flex items-center gap-2.5 sm:gap-3 shrink min-w-0 group">
+        <div class="header-logo-badge w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-serif text-lg sm:text-xl font-bold shadow-sm group-hover:scale-105 transition-all duration-300 shrink-0">
           V
         </div>
-        <div class="shrink-0">
-          <span class="header-brand-title font-serif font-bold text-xl sm:text-2xl tracking-tight block leading-tight whitespace-nowrap transition-colors duration-300">HOTEL VELORA INN</span>
-          <span class="header-brand-subtitle text-[9px] sm:text-[10px] uppercase tracking-widest font-bold block whitespace-nowrap transition-colors duration-300">Varanasi Cantt • Boutique Stay</span>
+        <div class="shrink min-w-0">
+          <span class="header-brand-title font-serif font-bold text-lg sm:text-2xl tracking-tight block leading-tight whitespace-nowrap transition-colors duration-300 truncate">HOTEL VELORA INN</span>
+          <span class="header-brand-subtitle text-[8.5px] sm:text-[10px] uppercase tracking-widest font-bold block whitespace-nowrap transition-colors duration-300">Varanasi Cantt • Boutique Stay</span>
         </div>
       </a>
 
@@ -471,6 +514,7 @@
       <nav class="hidden lg:flex items-center gap-4 xl:gap-7 text-xs font-semibold tracking-wider uppercase shrink-0">
         <a href="#overview" class="header-nav-link whitespace-nowrap py-1">Overview</a>
         <a href="#rooms" class="header-nav-link whitespace-nowrap py-1">Rooms & Suites</a>
+        <a href="#experiences" class="header-nav-link whitespace-nowrap py-1">Spiritual Tours</a>
         <a href="#amenities" class="header-nav-link whitespace-nowrap py-1">Amenities</a>
         <a href="#kashi" class="header-nav-link whitespace-nowrap py-1">Kashi Darshan</a>
         <a href="#gallery" class="header-nav-link whitespace-nowrap py-1">Gallery</a>
@@ -488,39 +532,48 @@
         </a>
       </div>
 
-      <!-- Mobile Hamburger Button -->
-      <button onclick="toggleMobileMenu()" class="header-menu-btn lg:hidden p-2 rounded-lg hover:bg-white/10 focus:outline-none transition-colors duration-300" aria-label="Toggle Navigation Menu">
-        <svg id="menuIcon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <!-- Mobile Hamburger Button with Smooth Icon -->
+      <button onclick="toggleMobileMenu()" class="header-menu-btn lg:hidden p-2 rounded-xl hover:bg-white/10 focus:outline-none transition-colors duration-300 shrink-0" aria-label="Toggle Navigation Menu">
+        <svg id="menuIcon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menuIconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl px-6 py-6 space-y-4 shadow-2xl transition-all duration-300">
-      <nav class="flex flex-col space-y-3.5 text-xs font-bold uppercase tracking-wider">
-        <a href="#overview" onclick="toggleMobileMenu()" class="py-2 border-b flex justify-between items-center transition-colors">
+    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-2xl px-5 py-5 space-y-3.5 shadow-2xl transition-all duration-300 border-t border-brand-gold/25 max-h-[82vh] overflow-y-auto touch-scroll">
+      <nav class="flex flex-col space-y-1 text-xs font-bold uppercase tracking-wider">
+        <a href="#overview" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
           <span>Hotel Overview</span> <span class="text-brand-gold">➔</span>
         </a>
-        <a href="#rooms" onclick="toggleMobileMenu()" class="py-2 border-b flex justify-between items-center transition-colors">
+        <a href="#rooms" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
           <span>Rooms & Suites</span> <span class="text-brand-gold">➔</span>
         </a>
-        <a href="#amenities" onclick="toggleMobileMenu()" class="py-2 border-b flex justify-between items-center transition-colors">
+        <a href="#experiences" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
+          <span>Sacred Boat & Darshan Tours</span> <span class="text-brand-gold">➔</span>
+        </a>
+        <a href="#amenities" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
           <span>Hotel Amenities</span> <span class="text-brand-gold">➔</span>
         </a>
-        <a href="#kashi" onclick="toggleMobileMenu()" class="py-2 border-b flex justify-between items-center transition-colors">
+        <a href="#kashi" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
           <span>Kashi Darshan & Live Map</span> <span class="text-brand-gold">➔</span>
         </a>
-        <a href="#gallery" onclick="toggleMobileMenu()" class="py-2 border-b flex justify-between items-center transition-colors">
+        <a href="#gallery" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
           <span>Photo Gallery</span> <span class="text-brand-gold">➔</span>
         </a>
-        <a href="#location" onclick="toggleMobileMenu()" class="py-2 flex justify-between items-center transition-colors">
-          <span>Location & Contact</span> <span class="text-brand-gold">➔</span>
+        <a href="#testimonials" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
+          <span>Guest Reviews & Feedback</span> <span class="text-brand-gold">➔</span>
+        </a>
+        <a href="#faq" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 border-b border-white/5 flex justify-between items-center transition-colors">
+          <span>Frequently Asked Questions</span> <span class="text-brand-gold">➔</span>
+        </a>
+        <a href="#location" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-white/5 flex justify-between items-center transition-colors">
+          <span>Location & Directions</span> <span class="text-brand-gold">➔</span>
         </a>
       </nav>
-      <div class="pt-3 flex flex-col gap-3">
-        <a href="tel:+919670215052" class="mobile-call-btn w-full py-3 text-center text-xs font-bold border border-brand-gold/40 hover:border-brand-gold rounded-xl flex items-center justify-center gap-2">
+      <div class="pt-2 flex flex-col gap-2.5">
+        <a href="tel:+919670215052" class="mobile-call-btn w-full py-3 text-center text-xs font-bold border border-brand-gold/40 hover:border-brand-gold rounded-xl flex items-center justify-center gap-2 transition-all">
           <span>📞 Call Reception (+91 9670215052)</span>
         </a>
-        <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20would%20like%20to%20inquire%20about%20direct%20booking%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer w-full py-3 text-center text-xs font-bold text-white bg-emerald-600 rounded-xl flex items-center justify-center gap-2 shadow-lg glow-emerald">
+        <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20would%20like%20to%20inquire%20about%20direct%20booking%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer w-full py-3 text-center text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl flex items-center justify-center gap-2 shadow-lg glow-emerald transition-all">
           <span>💬 Instant WhatsApp VIP Booking</span>
         </a>
       </div>
@@ -606,19 +659,21 @@
             </div>
           </div>
 
-          <!-- Hero Direct Action Buttons -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1.5">
-            <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20would%20like%20to%20reserve%20a%20suite%20directly%20with%2020%25%20discount." target="_blank" rel="noopener noreferrer" class="btn-shimmer px-5 sm:px-6 py-2.5 sm:py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg flex items-center gap-2 transition-all duration-300 hover:scale-105 glow-emerald">
+          <!-- Hero Direct Action Buttons (Mobile-First Ergonomic Layout) -->
+          <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-3 pt-1.5">
+            <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20would%20like%20to%20reserve%20a%20suite%20directly%20with%2020%25%20discount." target="_blank" rel="noopener noreferrer" class="btn-shimmer px-5 sm:px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 glow-emerald text-center">
               <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.58 1.961.94 3.012.94 3.181 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.988-5.126zm0-2.172c4.418 0 8 3.582 8 8 0 4.418-3.582 8-8 8-1.42 0-2.75-.373-3.903-1.026l-4.128 1.08 1.1-4.019c-.732-1.213-1.157-2.632-1.157-4.143 0-4.418 3.582-8 8.088-7.892z"/></svg>
               <span>Reserve Suite (Save 20%)</span>
               <span>➔</span>
             </a>
-            <a href="tel:+919670215052" class="px-4 sm:px-5 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 text-white border border-brand-gold/40 hover:border-brand-gold font-bold text-xs sm:text-sm rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-1.5">
-              <span>📞 Front Desk</span>
-            </a>
-            <a href="#bookingEngineCard" class="px-3 sm:px-4 py-2.5 sm:py-3 text-brand-goldLight hover:text-white font-bold text-xs sm:text-sm flex items-center gap-1 transition-colors">
-              <span>👑 Instant Tariff Calculator ↓</span>
-            </a>
+            <div class="flex items-center gap-2">
+              <a href="tel:+919670215052" class="flex-1 sm:flex-none px-4 sm:px-5 py-3 bg-white/10 hover:bg-white/20 text-white border border-brand-gold/40 hover:border-brand-gold font-bold text-xs sm:text-sm rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-1.5 text-center">
+                <span>📞 Front Desk</span>
+              </a>
+              <a href="#bookingEngineCard" class="flex-1 sm:flex-none px-3.5 sm:px-4 py-3 bg-white/5 sm:bg-transparent text-brand-goldLight hover:text-white border border-brand-gold/20 sm:border-0 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1 transition-colors text-center">
+                <span>👑 Tariff Calculator ↓</span>
+              </a>
+            </div>
           </div>
 
         </div>
@@ -1229,48 +1284,48 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-3 shrink-0">
-          <a id="activeGmapsBtn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Velora+Inn+Pared+Kothi+Varanasi&destination=Shri+Kashi+Vishwanath+Temple+Varanasi&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn-shimmer px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-2 shadow-xl glow-emerald transition-all duration-300 hover:scale-105 cursor-pointer">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0 w-full lg:w-auto">
+          <a id="activeGmapsBtn" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Velora+Inn+Pared+Kothi+Varanasi&destination=Shri+Kashi+Vishwanath+Temple+Varanasi&travelmode=driving" target="_blank" rel="noopener noreferrer" class="btn-shimmer px-5 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xl glow-emerald transition-all duration-300 hover:scale-105 cursor-pointer text-center">
             <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
             <span>Start Live GPS Navigation</span>
             <span>➔</span>
           </a>
-          <a id="activeCabBtn" href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn,%20please%20arrange%20a%20cab%20or%20e-rickshaw%20for%20Shri%20Kashi%20Vishwanath%20Dham." target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-brand-goldLight border border-brand-gold/40 font-bold text-xs flex items-center gap-2 transition-all duration-300 hover:scale-105">
+          <a id="activeCabBtn" href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn,%20please%20arrange%20a%20cab%20or%20e-rickshaw%20for%20Shri%20Kashi%20Vishwanath%20Dham." target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-brand-goldLight border border-brand-gold/40 font-bold text-xs flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 text-center">
             <span>🚕 Book Hotel Cab / Auto</span>
           </a>
         </div>
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="flex items-center justify-center gap-2.5 flex-wrap reveal-init">
-        <button onclick="filterMapPlaces('all')" class="map-tab active px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-brand-gold text-brand-navy border-brand-gold shadow-md" data-category="all">
+      <!-- Category Filter Pills (Mobile Swipeable Native Pill Strip) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar sm:justify-center sm:flex-wrap pb-2 px-1 reveal-init touch-scroll">
+        <button onclick="filterMapPlaces('all')" class="map-tab active px-4 sm:px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-brand-gold text-brand-navy border-brand-gold shadow-md shrink-0 whitespace-nowrap cursor-pointer" data-category="all">
           ✨ All Spots (11)
         </button>
-        <button onclick="filterMapPlaces('temples')" class="map-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white" data-category="temples">
+        <button onclick="filterMapPlaces('temples')" class="map-tab px-4 sm:px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white shrink-0 whitespace-nowrap cursor-pointer" data-category="temples">
           🛕 Temples & Shrines (5)
         </button>
-        <button onclick="filterMapPlaces('ghats')" class="map-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white" data-category="ghats">
+        <button onclick="filterMapPlaces('ghats')" class="map-tab px-4 sm:px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white shrink-0 whitespace-nowrap cursor-pointer" data-category="ghats">
           🌅 Sacred Ghats & Aarti (3)
         </button>
-        <button onclick="filterMapPlaces('heritage')" class="map-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white" data-category="heritage">
+        <button onclick="filterMapPlaces('heritage')" class="map-tab px-4 sm:px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white shrink-0 whitespace-nowrap cursor-pointer" data-category="heritage">
           🏛️ Heritage & History (2)
         </button>
-        <button onclick="filterMapPlaces('transit')" class="map-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white" data-category="transit">
+        <button onclick="filterMapPlaces('transit')" class="map-tab px-4 sm:px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white/10 text-slate-300 border-white/15 hover:border-brand-gold hover:text-white shrink-0 whitespace-nowrap cursor-pointer" data-category="transit">
           🚆 Station & Airport (2)
         </button>
       </div>
 
       <!-- Main Map & Cards Showcase (Two-Column Layout) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         
         <!-- Left Column: Interactive Landmark Cards List (Scrollable) -->
-        <div class="lg:col-span-5 space-y-3 max-h-[580px] lg:max-h-[620px] overflow-y-auto pr-1 sm:pr-2" id="placesListContainer">
+        <div class="lg:col-span-5 space-y-3 max-h-[360px] sm:max-h-[500px] lg:max-h-[620px] overflow-y-auto pr-1 sm:pr-2 touch-scroll" id="placesListContainer">
           <!-- Dynamically populated by JS -->
         </div>
 
         <!-- Right Column: Interactive Leaflet Map Canvas with Real-Time Routing -->
         <div class="lg:col-span-7 space-y-3">
-          <div class="relative rounded-3xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-slate-900 h-[450px] lg:h-[620px] w-full gold-border-glow">
+          <div class="relative rounded-3xl overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-slate-900 h-[340px] sm:h-[450px] lg:h-[620px] w-full gold-border-glow">
             <div id="varanasiMap" class="w-full h-full z-10"></div>
             
             <!-- Map Floating Controls & Origin Badge -->
@@ -1328,12 +1383,12 @@
         <p class="text-slate-600 text-xs sm:text-sm">Explore our serene rooms, warm ambience, and nearby spiritual treasures in Kashi.</p>
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex justify-center gap-2.5 mb-10 flex-wrap reveal-init">
-        <button onclick="filterGallery('all')" class="gallery-tab active px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-brand-navy text-white border-brand-navy hover:scale-105 shadow-sm" data-filter="all">All Photos</button>
-        <button onclick="filterGallery('rooms')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105" data-filter="rooms">Rooms & Suites</button>
-        <button onclick="filterGallery('amenities')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105" data-filter="amenities">Lobby & Amenities</button>
-        <button onclick="filterGallery('kashi')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105" data-filter="kashi">Kashi Darshan</button>
+      <!-- Category Filter Tabs (Swipeable on Mobile) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar sm:justify-center sm:flex-wrap pb-2 mb-8 sm:mb-10 px-1 reveal-init touch-scroll">
+        <button onclick="filterGallery('all')" class="gallery-tab active px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-brand-navy text-white border-brand-navy hover:scale-105 shadow-sm shrink-0 whitespace-nowrap cursor-pointer" data-filter="all">All Photos</button>
+        <button onclick="filterGallery('rooms')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105 shrink-0 whitespace-nowrap cursor-pointer" data-filter="rooms">Rooms & Suites</button>
+        <button onclick="filterGallery('amenities')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105 shrink-0 whitespace-nowrap cursor-pointer" data-filter="amenities">Lobby & Amenities</button>
+        <button onclick="filterGallery('kashi')" class="gallery-tab px-5 py-2 rounded-full text-xs font-bold border transition-all duration-300 bg-white text-slate-700 border-slate-200 hover:border-brand-gold hover:text-brand-gold hover:scale-105 shrink-0 whitespace-nowrap cursor-pointer" data-filter="kashi">Kashi Darshan</button>
       </div>
 
       <!-- Image Grid -->
@@ -2012,12 +2067,12 @@
   </footer>
 
   <!-- ================= 14. FIXED MOBILE BOTTOM ACTION BAR ================= -->
-  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-navyDeep/95 backdrop-blur-xl border-t border-brand-gold/30 p-2.5 flex items-center gap-2.5 shadow-2xl">
-    <a href="tel:+919670215052" class="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 border border-slate-700 transition-colors">
+  <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-navyDeep/95 backdrop-blur-2xl border-t border-brand-gold/35 px-3 py-2.5 flex items-center gap-2.5 shadow-2xl mobile-safe-bottom">
+    <a href="tel:+919670215052" class="flex-1 py-3 bg-slate-800/90 active:bg-slate-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 border border-brand-gold/30 transition-all shadow-md active:scale-95">
       <span class="text-brand-gold">📞</span> <span>Call Reception</span>
     </a>
-    <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20am%20looking%20for%20room%20availability%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-xl glow-emerald transition-all">
-      <span>💬</span> <span>WhatsApp Book</span>
+    <a href="https://wa.me/919670215052?text=Hello%20Hotel%20Velora%20Inn%20Varanasi,%20I%20am%20looking%20for%20room%20availability%20and%20rates." target="_blank" rel="noopener noreferrer" class="btn-shimmer flex-1 py-3 bg-emerald-600 active:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-xl glow-emerald transition-all active:scale-95">
+      <span>💬</span> <span>WhatsApp (Save 20%)</span>
     </a>
   </div>
 
@@ -2098,7 +2153,7 @@
 
       <!-- The Image Container -->
       <div class="relative max-h-full max-w-full flex items-center justify-center overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-brand-gold/50 shadow-2xl bg-black/50 p-1">
-        <img id="lightboxImage" src="" alt="Hotel Velora Inn Gallery Photo" class="max-h-[66vh] sm:max-h-[72vh] max-w-full w-auto object-contain rounded-xl sm:rounded-2xl transition-opacity duration-200 opacity-100 shadow-2xl">
+        <img id="lightboxImage" src="" alt="Hotel Velora Inn Gallery Photo" class="max-h-[56vh] sm:max-h-[72vh] max-w-full w-auto object-contain rounded-xl sm:rounded-2xl transition-opacity duration-200 opacity-100 shadow-2xl">
       </div>
 
       <!-- Next Arrow -->
@@ -2121,8 +2176,8 @@
         </div>
       </div>
 
-      <!-- Mini Thumbnails Row -->
-      <div id="lightboxThumbnails" class="flex items-center justify-center gap-2 overflow-x-auto py-1"></div>
+      <!-- Mini Thumbnails Row (Swipeable on Mobile) -->
+      <div id="lightboxThumbnails" class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 touch-scroll"></div>
     </div>
 
   </div>
@@ -2379,6 +2434,20 @@
 
       window.addEventListener('resize', () => {
         requestAnimationFrame(updateHeaderColor);
+        if (typeof varanasiMap !== 'undefined' && varanasiMap) {
+          varanasiMap.invalidateSize();
+        }
+        if (typeof locationDetailMap !== 'undefined' && locationDetailMap) {
+          locationDetailMap.invalidateSize();
+        }
+      });
+
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+          updateHeaderColor();
+          if (typeof varanasiMap !== 'undefined' && varanasiMap) varanasiMap.invalidateSize();
+          if (typeof locationDetailMap !== 'undefined' && locationDetailMap) locationDetailMap.invalidateSize();
+        }, 300);
       });
 
       // Initial execution
@@ -2415,10 +2484,29 @@
       }
     }
 
-    // Mobile Menu
+    // Enhanced Mobile Menu with Icon Morphing
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
+      if (!menu) return;
+      const isHidden = menu.classList.toggle('hidden');
+      const iconPath = document.getElementById('menuIconPath');
+      if (iconPath) {
+        if (!isHidden) {
+          iconPath.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        } else {
+          iconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (!menu) return;
+      menu.classList.add('hidden');
+      const iconPath = document.getElementById('menuIconPath');
+      if (iconPath) {
+        iconPath.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      }
     }
 
     // Gallery Filter
@@ -2625,6 +2713,57 @@
         }
       }
     });
+
+    // Native Touch Swipe Gestures for Mobile Lightbox Navigation
+    (function initMobileLightboxSwipe() {
+      const modal = document.getElementById('galleryLightboxModal');
+      if (!modal) return;
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      modal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      modal.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].screenX - touchStartX;
+        const diffY = e.changedTouches[0].screenY - touchStartY;
+        // Require horizontal swipe greater than vertical movement and minimum 40px threshold
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+          if (diffX < 0) {
+            nextLightbox(); // Swiped left -> next photo
+          } else {
+            prevLightbox(); // Swiped right -> previous photo
+          }
+        }
+      }, { passive: true });
+    })();
+
+    // Native Touch Swipe Gestures for Mobile Hero Slideshow
+    (function initMobileHeroSwipe() {
+      const hero = document.getElementById('home');
+      if (!hero) return;
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      hero.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+      }, { passive: true });
+
+      hero.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].screenX - touchStartX;
+        const diffY = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+          if (diffX < 0) {
+            nextHeroSlide(); // Swiped left -> next slide
+          } else {
+            prevHeroSlide(); // Swiped right -> previous slide
+          }
+        }
+      }, { passive: true });
+    })();
 
     /* ================= 10. GUEST REVIEW & CONCIERGE KNOWLEDGE-BASE ENGINE ================= */
     let selectedReviewRating = 5;
