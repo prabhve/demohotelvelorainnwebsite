@@ -347,9 +347,23 @@
       color: #FFFFFF !important;
       border-color: #C5A059 !important;
     }
-    .custom-hotel-pin, .custom-place-pin {
+    .custom-hotel-pin, .custom-place-pin, .route-mid-pill {
       background: transparent;
       border: none;
+    }
+
+    /* Ultra-Premium Animated Golden Route Flow & Neon Laser Glow */
+    @keyframes routeFlow {
+      from {
+        stroke-dashoffset: 40;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    .leaflet-route-animated {
+      animation: routeFlow 1.5s linear infinite !important;
+      filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.85)) drop-shadow(0 0 14px rgba(197, 160, 89, 0.6));
     }
 
     /* ================= DYNAMIC ADAPTIVE NAVBAR THEMES ON SCROLL ================= */
@@ -3424,7 +3438,9 @@
     let streetTileLayer = null;
     let satelliteTileLayer = null;
     let mapMarkers = {};
+    let activeRouteGlow = null;
     let activeRoutePolyline = null;
+    let activeRouteMidMarker = null;
     let selectedPlaceId = 'kashi-vishwanath';
 
     function switchMapLayer(layerType) {
@@ -3473,30 +3489,27 @@
       // Hotel Velora Inn Custom Origin Marker
       const hotelIcon = L.divIcon({
         className: 'custom-hotel-pin',
-        html: `<div class="relative flex items-center justify-center cursor-pointer group">
-                <div class="w-10 h-10 rounded-full bg-[#C5A059] text-[#0C1829] font-serif font-black text-base flex items-center justify-center border-2 border-white shadow-2xl">
+        html: `<div class="relative flex items-center justify-center cursor-pointer group" onclick="resetMapCenter()" title="Hotel Velora Inn (Origin Point)">
+                <!-- Pulsing outer gold aura -->
+                <div class="absolute -inset-2.5 rounded-full border-2 border-[#C5A059] animate-ping opacity-60 pointer-events-none"></div>
+                <!-- Origin Pin -->
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-goldDark via-brand-gold to-brand-goldLight text-[#0C1829] font-serif font-black text-lg flex items-center justify-center border-2 border-white shadow-2xl">
                   V
                 </div>
-                <div class="absolute -inset-2 rounded-full border-2 border-[#C5A059] animate-ping opacity-60 pointer-events-none"></div>
-                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#0C1829] text-[#C5A059] text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow whitespace-nowrap border border-[#C5A059]/50">
-                  Hotel Velora Inn
+                <!-- Permanent Luxury Origin Label -->
+                <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#060D17]/95 text-[#E8D5A7] text-[10px] sm:text-[10.5px] font-bold px-3 py-0.5 rounded-full shadow-2xl whitespace-nowrap border border-[#C5A059] flex items-center gap-1.5 z-20 ring-1 ring-white/20">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Hotel Velora Inn (Origin)</span>
                 </div>
                </div>`,
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-        popupAnchor: [0, -22]
+        iconSize: [44, 44],
+        iconAnchor: [22, 22]
       });
 
       const hotelMarker = L.marker(hotelCoords, { icon: hotelIcon, zIndexOffset: 1000 }).addTo(varanasiMap);
-      hotelMarker.bindPopup(`
-        <div class="p-3 text-xs text-white max-w-[220px]">
-          <div class="font-serif font-bold text-base text-[#E8D5A7] mb-0.5">Hotel Velora Inn</div>
-          <p class="text-[11px] text-slate-300 mb-2">Pared Kothi, Cantt, Varanasi (Origin Point)</p>
-          <div class="text-[10px] bg-[#C5A059]/20 text-[#C5A059] px-2 py-1 rounded font-bold">
-            ★ Starting point for all tours
-          </div>
-        </div>
-      `);
+      hotelMarker.on('click', () => {
+        resetMapCenter();
+      });
 
       // Add all destination markers
       renderLandmarkMarkers();
@@ -3511,51 +3524,63 @@
       }, 300);
     }
 
+    function createPlaceDivIcon(place, isSelected) {
+      const html = isSelected ? `
+        <div class="relative flex flex-col items-center justify-center cursor-pointer">
+          <!-- Floating Landmark Title Badge -->
+          <div class="absolute -top-8 bg-[#060D17]/95 text-[#E8D5A7] border border-[#C5A059] text-[10.5px] font-bold px-3 py-0.5 rounded-full shadow-2xl whitespace-nowrap pointer-events-none flex items-center gap-1.5 z-30 ring-1 ring-white/20">
+            <span>${place.icon}</span>
+            <span>${place.name}</span>
+          </div>
+          <!-- Highlighted Pin -->
+          <div class="w-10 h-10 rounded-full bg-[#C5A059] ring-4 ring-white text-brand-navy font-bold text-base flex items-center justify-center shadow-2xl transition-all duration-300">
+            ${place.icon}
+          </div>
+          <!-- Glowing Pulse Aura -->
+          <div class="absolute -inset-2 rounded-full border-2 border-[#C5A059] animate-ping opacity-60 pointer-events-none"></div>
+        </div>
+      ` : `
+        <div class="relative flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+          <div class="w-8 h-8 rounded-full bg-[#0C1829] border border-[#C5A059]/70 text-white text-sm flex items-center justify-center shadow-lg hover:border-[#C5A059] hover:bg-[#1A2E4B] transition-colors">
+            ${place.icon}
+          </div>
+        </div>
+      `;
+
+      return L.divIcon({
+        className: 'custom-place-pin',
+        html: html,
+        iconSize: isSelected ? [40, 40] : [32, 32],
+        iconAnchor: isSelected ? [20, 20] : [16, 16]
+      });
+    }
+
+    function updateMarkersAppearance() {
+      placesData.forEach(p => {
+        const m = mapMarkers[p.id];
+        if (!m) return;
+        const isSelected = (p.id === selectedPlaceId);
+        m.setIcon(createPlaceDivIcon(p, isSelected));
+        if (isSelected) {
+          m.setZIndexOffset(900);
+        } else {
+          m.setZIndexOffset(100);
+        }
+      });
+    }
+
     function renderLandmarkMarkers() {
       placesData.forEach(place => {
         const isSelected = (place.id === selectedPlaceId);
-        const iconHtml = `
-          <div class="w-8 h-8 rounded-full ${isSelected ? 'bg-[#C5A059] ring-4 ring-white scale-110' : 'bg-[#0C1829] border border-[#C5A059]/70'} text-white text-sm flex items-center justify-center shadow-xl transition-all duration-300 cursor-pointer">
-            ${place.icon}
-          </div>
-        `;
+        const placeIcon = createPlaceDivIcon(place, isSelected);
 
-        const placeIcon = L.divIcon({
-          className: 'custom-place-pin',
-          html: iconHtml,
-          iconSize: [32, 32],
-          iconAnchor: [16, 16],
-          popupAnchor: [0, -18]
-        });
-
-        const navUrl = getGmapsNavUrl(place);
-        const cabUrl = getCabWhatsAppUrl(place);
-
-        const marker = L.marker(place.coords, { icon: placeIcon }).addTo(varanasiMap);
-        marker.bindPopup(`
-          <div class="p-3.5 text-xs text-white max-w-[240px]">
-            <div class="flex items-center gap-1.5 mb-1.5">
-              <span class="text-base">${place.icon}</span>
-              <strong class="text-sm font-serif font-bold text-[#E8D5A7] leading-tight">${place.name}</strong>
-            </div>
-            <p class="text-[11px] text-slate-300 mb-2 leading-relaxed">${place.desc}</p>
-            <div class="flex justify-between items-center text-[10px] text-brand-gold font-bold mb-2.5 pb-1 border-b border-white/10">
-              <span>📍 ${place.distance} from hotel</span>
-              <span>⏱️ ${place.time}</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <a href="${navUrl}" target="_blank" rel="noopener noreferrer" class="btn-popup-gps w-full py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 !text-white rounded-xl text-center font-bold text-xs flex items-center justify-center gap-1.5 shadow-md glow-emerald transition-all" style="color: #ffffff !important; text-decoration: none !important;">
-                <span style="color: #ffffff !important; font-weight: 700;">🧭 Start Turn-by-Turn GPS</span>
-              </a>
-              <a href="${cabUrl}" target="_blank" rel="noopener noreferrer" class="btn-popup-cab w-full py-2 px-3 bg-white/10 hover:bg-white/20 !text-[#E8D5A7] hover:!text-white rounded-xl text-center font-bold text-[11px] border border-brand-gold/40 transition-colors flex items-center justify-center gap-1.5" style="color: #F0E2C2 !important; text-decoration: none !important;">
-                <span>🚕</span> <span style="color: #F0E2C2 !important; font-weight: 700;">Book Hotel Cab / Auto</span>
-              </a>
-            </div>
-          </div>
-        `);
+        const marker = L.marker(place.coords, { 
+          icon: placeIcon,
+          zIndexOffset: isSelected ? 900 : 100
+        }).addTo(varanasiMap);
 
         marker.on('click', () => {
-          selectMapPlace(place.id);
+          selectMapPlace(place.id, true);
         });
 
         mapMarkers[place.id] = marker;
@@ -3584,7 +3609,7 @@
             : 'bg-white/5 border-white/10 hover:border-brand-gold/60 hover:bg-white/10'
         }`;
         
-        card.onclick = () => selectMapPlace(place.id);
+        card.onclick = () => selectMapPlace(place.id, true);
 
         card.innerHTML = `
           <div class="flex items-start justify-between gap-3">
@@ -3638,40 +3663,74 @@
       if (gmapsBtn) gmapsBtn.href = getGmapsNavUrl(place);
       if (cabBtn) cabBtn.href = getCabWhatsAppUrl(place);
 
-      // Draw Route Polyline from Hotel to Destination
+      // Refresh Marker Highlights (Floating landmark title on active destination)
+      updateMarkersAppearance();
+
+      // Clear previous route layers
+      if (activeRouteGlow) {
+        varanasiMap.removeLayer(activeRouteGlow);
+        activeRouteGlow = null;
+      }
       if (activeRoutePolyline) {
         varanasiMap.removeLayer(activeRoutePolyline);
+        activeRoutePolyline = null;
+      }
+      if (activeRouteMidMarker) {
+        varanasiMap.removeLayer(activeRouteMidMarker);
+        activeRouteMidMarker = null;
       }
 
-      activeRoutePolyline = L.polyline([hotelCoords, place.coords], {
+      // 1. Draw Outer Glowing Ambient Path (Laser Glow)
+      activeRouteGlow = L.polyline([hotelCoords, place.coords], {
         color: '#C5A059',
-        weight: 3.5,
-        dashArray: '7, 9',
-        opacity: 0.95
+        weight: 9,
+        opacity: 0.38,
+        lineCap: 'round',
+        lineJoin: 'round'
       }).addTo(varanasiMap);
 
-      // Fit bounds to show both Hotel Velora Inn and destination
+      // 2. Draw Core Animated Flowing Route Line (Dashed Golden Flow)
+      activeRoutePolyline = L.polyline([hotelCoords, place.coords], {
+        color: '#FFF3CD',
+        weight: 4,
+        dashArray: '8, 12',
+        opacity: 1.0,
+        className: 'leaflet-route-animated',
+        lineCap: 'round',
+        lineJoin: 'round'
+      }).addTo(varanasiMap);
+
+      // 3. Draw Floating Midpoint Distance & Time Pill along the route
+      const midLat = (hotelCoords[0] + place.coords[0]) / 2;
+      const midLng = (hotelCoords[1] + place.coords[1]) / 2;
+      const midPillIcon = L.divIcon({
+        className: 'route-mid-pill',
+        html: `<div class="px-3 py-1 rounded-full bg-[#060D17]/95 text-[#E8D5A7] border border-[#C5A059] text-[10.5px] font-bold shadow-2xl backdrop-blur-md flex items-center gap-1.5 whitespace-nowrap transform -translate-x-1/2 -translate-y-1/2 pointer-events-none ring-1 ring-white/20">
+                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                 <span>${place.distance} • ${place.time}</span>
+               </div>`,
+        iconSize: [0, 0]
+      });
+      activeRouteMidMarker = L.marker([midLat, midLng], {
+        icon: midPillIcon,
+        interactive: false,
+        zIndexOffset: 600
+      }).addTo(varanasiMap);
+
+      // 4. Smoothly fit bounds to show both Hotel Velora Inn and the Destination clearly
       const bounds = L.latLngBounds([hotelCoords, place.coords]);
       if (shouldScroll) {
         varanasiMap.flyToBounds(bounds, {
-          padding: [50, 50],
+          padding: [60, 60],
           maxZoom: 15,
-          duration: 1.2
+          duration: 1.1
         });
       } else {
         varanasiMap.fitBounds(bounds, {
-          padding: [50, 50],
+          padding: [60, 60],
           maxZoom: 15,
           animate: false
         });
-      }
-
-      // Open marker popup only when user deliberately interacts
-      const marker = mapMarkers[placeId];
-      if (marker && shouldScroll) {
-        setTimeout(() => {
-          marker.openPopup();
-        }, 500);
       }
 
       // Highlight active card in left list
